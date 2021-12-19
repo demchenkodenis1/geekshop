@@ -55,8 +55,10 @@ def profile(request):
         form = UserProfileForm(instance=request.user, data=request.POST, files=request.FILES)
         if form.is_valid():
             form.save()
+            messages.set_level(request, messages.SUCCESS)
             messages.success(request, 'Вы успешно сохранили профиль')
         else:
+            messages.set_level(request, messages.ERROR)
             messages.error(request, 'Профиль не сохранен')
             # print(form.errors)
 
@@ -67,16 +69,17 @@ def profile(request):
     #     total_quantity += basket.quantity
     #     total_sum += basket.sum()
 
-    baskets = Basket.objects.filter(user=request.user)
-    total_sum = sum(basket.sum() for basket in baskets)
-    total_quantity = sum(basket.quantity for basket in baskets)
+    # baskets = Basket.objects.filter(user=request.user)
+    # total_sum = sum(basket.sum() for basket in baskets)
+    # total_quantity = sum(basket.quantity for basket in baskets)
 
     context = {
         'title': 'Geekshop | Профиль',
         'form': UserProfileForm(instance=request.user),
-        'baskets': baskets,
-        'total_quantity': total_quantity,
-        'total_sum': total_sum,
+        # 'baskets': baskets,
+        # 'total_quantity': total_quantity,
+        # 'total_sum': total_sum,
+        'baskets': Basket.objects.filter(user=request.user)
     }
     return render(request, 'authapp/profile.html', context)
 
