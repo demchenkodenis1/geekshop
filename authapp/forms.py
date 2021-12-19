@@ -1,4 +1,4 @@
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UserChangeForm
 from django.core.exceptions import ValidationError
 from  django import forms
 
@@ -8,7 +8,7 @@ from authapp.validator import validate_name
 
 class UserLoginForm(AuthenticationForm):
 
-    username = forms.CharField(widget=forms.TextInput(), validators=[validate_name])
+    # username = forms.CharField(widget=forms.TextInput(), validators=[validate_name])
 
     class Meta:
         model = User
@@ -39,7 +39,25 @@ class UserRegisterForm(UserCreationForm):
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'form-control py-4'
 
-    def clean_username(self):
-        data = self.cleaned_data['username']
-        if data.isalpha():
-            raise ValidationError('Имя не должно содержать числа')
+    # def clean_username(self):
+    #     data = self.cleaned_data['username']
+    #     if data.isalpha():
+    #         raise ValidationError('Имя не должно содержать числа')
+
+
+class UserProfileForm(UserChangeForm):
+    first_name = forms.CharField(widget=forms.TextInput(), validators=[validate_name])
+    image = forms.ImageField(widget=forms.FileInput(), required=False)
+    age = forms.IntegerField(widget=forms.NumberInput(), required=False)
+
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'first_name', 'last_name', 'age', 'image')
+
+    def __init__(self, *args, **kwargs):
+        super(UserProfileForm, self).__init__(*args, **kwargs)
+        self.fields['username'].widget.attrs['readonly'] = True
+        self.fields['email'].widget.attrs['readonly'] = True
+        for field_name, field in self.fields.items():
+            field.widget.attrs['class'] = 'form-control py-4'
+        self.fields['image'].widget.attrs['class'] = 'custom_file_input'
