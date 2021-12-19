@@ -34,9 +34,11 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'mainapp:products' %}">Каталог <i class="fas fa-shopping-bag"></i> </a>
                 </li>
+                {% if not user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link" href="auth/login.html">Войти <i class="fas fa-sign-in-alt"></i></a>
+                    <a class="nav-link" href="{% url 'authapp:login' %}">Войти <i class="fas fa-sign-in-alt"></i></a>
                 </li>
+                {% else %}
                 <li class="nav-item">
                     <a class="nav-link" href="auth/profile.html">User
                         <i class="fas fa-user-circle"></i>
@@ -48,8 +50,9 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Выйти <i class="fas fa-sign-out-alt"></i></a>
+                    <a class="nav-link" href="{% url 'authapp:logout' %}">Выйти <i class="fas fa-sign-out-alt"></i></a>
                 </li>
+                {% endif %}
             </ul>
         </div>
     </div>
