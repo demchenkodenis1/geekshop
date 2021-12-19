@@ -4,9 +4,9 @@
     <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid">
-                <h1 class="mt-4">Редактирование продукта {{ product_select.username }}</h1>
+                <h1 class="mt-4">Редактирование продукта {{ product.username }}</h1>
                 <div class="card-body">
-                    <form action="{% url 'admins:admin_product_update' product_select.id %}" method="post"
+                    <form action="{% url 'admins:admin_product_update' product.id %}" method="post"
                           enctype="multipart/form-data">
                         {% csrf_token %}
                         <div class="form-row">
@@ -54,7 +54,7 @@
                             </div>
                         </div>
                     </form>
-                    <form action="{% url 'admins:admin_product_delete' product_select.id %}" method="post">
+                    <form action="{% url 'admins:admin_product_delete' product.id %}" method="post">
                         {% csrf_token %}
                         <div class="row">
                             <div class="col-lg-12" style="margin-top: 33px;">
