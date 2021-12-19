@@ -1,0 +1,74 @@
+{% extends 'admins/base.html' %}
+
+{% block content %}
+    <div id="layoutSidenav_content">
+        <main>
+            <div class="container-fluid">
+                <h1 class="mt-4">Продукты</h1>
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <i class="fas fa-table mr-1"></i>
+                        Продукты
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                <tr>
+                                    <th>Название</th>
+                                    <th>Изображение</th>
+                                    <th>Цена</th>
+                                    <th>Описание</th>
+                                    <th>Количество</th>
+                                    <th>Категория</th>
+{#                                    <th>Активный</th>#}
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for product in object_list %}
+                                    <tr>
+                                        <td><a href="{% url 'admins:admin_product_update' product.id %}"
+                                               style="color: dodgerblue">{{ product.name }}</a></td>
+                                        <td>{{ product.image }}</td>
+                                        <td>{{ product.price }}</td>
+                                        <td>{{ product.description }}</td>
+                                        <td>{{ product.quantity }}</td>
+                                        <td>{{ product.category }}</td>
+{#                                        <td>{{ product.category }}</td>#}
+{#                                        <td class="text-center">#}
+{#                                            {% if user.is_staff %}#}
+{#                                                <i class="fas fa-check-circle"></i>#}
+{#                                            {% else %}#}
+{#                                                <i class="fas fa-times-circle"></i>#}
+{#                                            {% endif %}#}
+{#                                        </td>#}
+{#                                        <td class="text-center">#}
+{#                                            {% if user.is_active %}#}
+{#                                                <i class="fas fa-check-circle"></i>#}
+{#                                            {% else %}#}
+{#                                                <i class="fas fa-times-circle"></i>#}
+{#                                            {% endif %}#}
+{#                                        </td>#}
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="{% url 'admins:admin_product_create' %}">
+                            <button class="btn btn-success">Создать продукт</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer class="py-4 bg-light mt-auto">
+            <div class="container-fluid">
+                <div class="d-flex align-items-center justify-content-between small">
+                    <div class="text-muted">Copyright &copy; GeekShop 2021</div>
+                </div>
+            </div>
+        </footer>
+    </div>
+{% endblock %}

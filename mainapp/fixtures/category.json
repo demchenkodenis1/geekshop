@@ -1,0 +1,34 @@
+[
+  {
+    "model": "mainapp.productcategory",
+    "pk": 1,
+    "fields": {
+      "name": "Одежда",
+      "description": "Описание вещей в классе"
+    }
+  },
+  {
+    "model": "mainapp.productcategory",
+    "pk": 2,
+    "fields": {
+      "name": "Обувь",
+      "description": "Описание обуви в классе"
+    }
+  },
+  {
+    "model": "mainapp.productcategory",
+    "pk": 3,
+    "fields": {
+      "name": "Аксесуары",
+      "description": "Описание аксесуаров в классе"
+    }
+  },
+  {
+    "model": "mainapp.productcategory",
+    "pk": 4,
+    "fields": {
+      "name": "Новинки",
+      "description": "Описание новинок"
+    }
+  }
+]
