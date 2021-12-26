@@ -1,10 +1,11 @@
 {% extends 'admins/base.html' %}
 
 {% block content %}
+
     <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid">
-                <h1 class="mt-4">Категории</h1>
+                <h1 class="mt-4">{{ title }}</h1>
                 <div class="card mb-4">
                     <div class="card-header">
                         <i class="fas fa-table mr-1"></i>
@@ -14,12 +15,48 @@
                         <div class="table-responsive">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
+                                <tr>
+                                    <th>Наименование</th>
+                                    <th>Описание</th>
+                                    <th>Активный</th>
+                                    <th>Удалить</th>
+                                    <th>Изменить</th>
+                                </tr>
+                                </thead>
+                                <tfoot>
+                                <tr>
+                                    <th>Наименование</th>
+                                    <th>Описание</th>
+                                    <th>Активный</th>
+                                    <th>Удалить</th>
+                                    <th>Изменить</th>
+                                </tr>
+                                </tfoot>
                                 <tbody>
+
                                 {% for category in object_list %}
                                     <tr>
-                                        <td><a href="{% url 'admins:admin_category_update' category.id %}"
-                                               style="color: dodgerblue">{{ category.name }}</a></td>
-                                        <td>{{ category.description}}</td>
+                                        <td>{{ category.name }}</td>
+                                        <td>{{ category.description }}</td>
+                                        <td class="text-center">
+                                            {% if category.is_active %}
+                                                <i class="fas fa-check-circle"></i>
+                                            {% else %}
+
+                                                <i class="fas fa-times-circle"></i>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            <form action="{% url 'admins:admin_category_delete' category.id %}" method="post">
+                                                {% csrf_token %}
+                                                <input class="btn btn-danger btn-block" type="submit" value="Удалить">
+                                            </form>
+                                        </td>
+                                        <td>
+                                            <a href="{% url 'admins:admin_category_update' pk=category.id %}">
+                                                <input class="btn btn-success btn-block" type="submit" value="Изменить">
+                                            </a>
+                                        </td>
                                     </tr>
                                 {% endfor %}
                                 </tbody>
@@ -42,4 +79,5 @@
             </div>
         </footer>
     </div>
+
 {% endblock %}

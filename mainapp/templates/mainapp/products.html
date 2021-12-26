@@ -1,12 +1,11 @@
 {% extends 'mainapp/base.html' %}
 {% load static %}
-
 {% block css %}
-    <link href="{% static 'css/products.css' %}" rel="stylesheet">
+    <link href="{% static  'css/products.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
-    <!-- Page Content -->
+
     <div class="container">
 
         <div class="row">
@@ -19,8 +18,6 @@
                         <a href="{% url 'mainapp:category' category.id %}"
                            class="list-group-item">{{ category.name }}</a>
                     {% endfor %}
-                    <a href="{% url 'mainapp:products' %}" class="list-group-item">Все категории</a>
-
                 </div>
 
             </div>
@@ -36,15 +33,15 @@
                     </ol>
                     <div class="carousel-inner" role="listbox">
                         <div class="carousel-item active">
-                            <img class="d-block img-fluid" src="{% static 'vendor/img/slides/slide-1.jpg' %}"
+                            <img class="d-block img-fluid" src="{% static  'vendor/img/slides/slide-1.jpg' %}"
                                  alt="First slide">
                         </div>
                         <div class="carousel-item">
-                            <img class="d-block img-fluid" src="{% static 'vendor/img/slides/slide-2.jpg' %}"
+                            <img class="d-block img-fluid" src="{% static  'vendor/img/slides/slide-2.jpg' %}"
                                  alt="Second slide">
                         </div>
                         <div class="carousel-item">
-                            <img class="d-block img-fluid" src="{% static 'vendor/img/slides/slide-3.jpg' %}"
+                            <img class="d-block img-fluid" src="{% static  'vendor/img/slides/slide-3.jpg' %}"
                                  alt="Third slide">
                         </div>
                     </div>
@@ -57,24 +54,33 @@
                         <span class="sr-only">Next</span>
                     </a>
                 </div>
-
                 {% include 'mainapp/includes/card.html' %}
-
                 <nav aria-label="Page navigation example">
                     <ul class="pagination justify-content-center">
-                        <li class="page-item {% if not products.has_previous %} disabled {% endif %}">
+
+
+                        <li class="page-item {% if not products.has_previous %} disabled{% endif %}">
                             <a class="page-link"
                                href="{% if products.has_previous %} {% url 'mainapp:page' products.previous_page_number %} {% endif %}"
                                tabindex="-1" aria-disabled="true">Previous</a>
                         </li>
+
+
+
                         {% for page in products.paginator.page_range %}
                             <li class="page-item">
-                            <a class="page-link" href="{% url 'mainapp:page' page %}">{{ page }}</a>
-                        </li>
+                                <a class="page-link" href="{% url 'mainapp:page' page %}">{{ page }}</a>
+                            </li>
                         {% endfor %}
-                        <li class="page-item {% if not products.has_next %} disabled {% endif %}"><a class="page-link"
-                            href="{% if products.has_next %} {% url 'mainapp:page' products.next_page_number %} {% endif %}">Next</a>
+
+
+
+                        <li class="page-item {% if not products.has_next %} disabled {% endif %}">
+                            <a class="page-link"
+                               href="{% if products.has_next %} {% url 'mainapp:page' products.next_page_number %} {% endif %}"
+                               tabindex="-1" aria-disabled="true">Next</a>
                         </li>
+
 
                     </ul>
                 </nav>
@@ -84,13 +90,13 @@
         </div>
 
     </div>
+
 {% endblock %}
 
 {% block footer %}
-    <!-- Footer -->
     <footer class="py-5 bg-dark">
         <div class="container">
-            <p class="m-0 text-center text-white">Copyright &copy; GeekShop 2020</p>
+            <p class="m-0 text-center text-white">Copyright &copy; GeekShop 2021</p>
         </div>
     </footer>
 {% endblock %}
