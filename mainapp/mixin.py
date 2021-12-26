@@ -1,4 +1,3 @@
-
 from django.contrib.auth.decorators import user_passes_test
 from django.utils.decorators import method_decorator
 from django.views.generic.base import View, ContextMixin

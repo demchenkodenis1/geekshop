@@ -1,34 +1,42 @@
 [
   {
     "model": "mainapp.productcategory",
-    "pk": 1,
-    "fields": {
-      "name": "Одежда",
-      "description": "Описание вещей в классе"
-    }
-  },
-  {
-    "model": "mainapp.productcategory",
-    "pk": 2,
-    "fields": {
-      "name": "Обувь",
-      "description": "Описание обуви в классе"
-    }
-  },
-  {
-    "model": "mainapp.productcategory",
-    "pk": 3,
-    "fields": {
-      "name": "Аксесуары",
-      "description": "Описание аксесуаров в классе"
-    }
-  },
-  {
-    "model": "mainapp.productcategory",
     "pk": 4,
     "fields": {
+      "name": "Одежда",
+      "description": "Описание для класса одежды"
+    }
+  },
+  {
+    "model": "mainapp.productcategory",
+    "pk": 5,
+    "fields": {
+      "name": "Аксесуары",
+      "description": ""
+    }
+  },
+  {
+    "model": "mainapp.productcategory",
+    "pk": 6,
+    "fields": {
+      "name": "Обувь",
+      "description": ""
+    }
+  },
+  {
+    "model": "mainapp.productcategory",
+    "pk": 7,
+    "fields": {
       "name": "Новинки",
-      "description": "Описание новинок"
+      "description": ""
+    }
+  },
+  {
+    "model": "mainapp.productcategory",
+    "pk": 8,
+    "fields": {
+      "name": "Подарки",
+      "description": ""
     }
   }
 ]
