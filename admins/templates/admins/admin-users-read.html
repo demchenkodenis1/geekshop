@@ -23,6 +23,7 @@
                                     <th>Активный</th>
                                 </tr>
                                 </thead>
+
                                 <tbody>
                                 {% for user in object_list %}
                                     <tr>
@@ -37,8 +38,12 @@
                                             {% else %}
                                                 <i class="fas fa-times-circle"></i>
                                             {% endif %}
+
                                         </td>
+
+
                                         <td class="text-center">
+
                                             {% if user.is_active %}
                                                 <i class="fas fa-check-circle"></i>
                                             {% else %}

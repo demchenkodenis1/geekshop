@@ -5,15 +5,19 @@
         <main>
             <div class="container-fluid">
                 <h1 class="mt-4">Создание категории</h1>
-                <form action="{% url 'admins:admin_category_create' %}" method="post" enctype="multipart/form-data">
+                <form action="{% url 'admins:admin_category_create' %}" method="post">
                     {% csrf_token %}
                     <div class="form-row">
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <label class="small mb-1" for="{{ form.name.id_for_label }}">Имя категории</label>
+                                <label class="small mb-1" for="{{ form.name.id_for_label }}">Наименование</label>
                                 {{ form.name }}
                             </div>
                         </div>
+
+                    </div>
+                    <div class="form-row">
+
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label class="small mb-1" for="{{ form.description.id_for_label }}">Описание</label>
@@ -22,7 +26,7 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="col-lg-12" style="margin-top: 33px;">
+                        <div class="col-lg-6" style="margin-top: 33px;">
                             <input class="btn btn-info btn-block" type="submit" value="Сохранить">
                         </div>
                     </div>
