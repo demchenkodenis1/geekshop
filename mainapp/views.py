@@ -15,21 +15,22 @@ MODULE_DIR = os.path.dirname(__file__)
 
 def index(request):
     context = {
-        'title': 'Geekshop'}
+        'title': 'Geekshop', }
     return render(request, 'mainapp/index.html', context)
 
 
-def products(request, id_category=None, page=1):
+def products(request,id_category=None,page=1):
 
-    context = {'title': 'Geekshop - Товары',
-               'categories': ProductCategory.objects.all(),
-               }
+    context = {
+        'title': 'Geekshop | Каталог',
+    }
+
     if id_category:
-        products = Product.objects.filter(category_id=id_category)
+        products= Product.objects.filter(category_id=id_category)
     else:
         products = Product.objects.all()
 
-    paginator = Paginator(products, per_page=3)
+    paginator = Paginator(products,per_page=3)
 
     try:
         products_paginator = paginator.page(page)
@@ -37,19 +38,21 @@ def products(request, id_category=None, page=1):
         products_paginator = paginator.page(1)
     except EmptyPage:
         products_paginator = paginator.page(paginator.num_pages)
-    context['products'] = products_paginator
 
+
+    context['products'] = products_paginator
+    context['categories'] = ProductCategory.objects.all()
     return render(request, 'mainapp/products.html', context)
 
 
 class ProductDetail(DetailView):
-    """ КОнтроллер вывода информации о продукте"""
+    """
+    Контроллер вывода информации о продукте
+    """
     model = Product
     template_name = 'mainapp/detail.html'
-    # context_object_name = 'product'
 
     # def get_context_data(self, **kwargs):
-    #     """" Добавляем список категорий для вывода сайтбара с категориями на странице каталога"""
     #     context = super(ProductDetail, self).get_context_data(**kwargs)
     #     product = self.get_object()
     #     context['product'] = product
