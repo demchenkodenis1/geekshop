@@ -19,7 +19,7 @@ from ordersapp.models import Order, OrderItem
 
 class OrderList(ListView, BaseClassContextMixin, UserDipatchMixin):
     model = Order
-    title = 'GeekShop | Список заказов'
+    title = 'geekshop | Список заказов'
 
     def get_queryset(self):
         return Order.objects.filter(user=self.request.user, is_active=True).select_related()
@@ -29,7 +29,7 @@ class OrderCreate(CreateView, BaseClassContextMixin, UserDipatchMixin):
     model = Order
     fields = []
     success_url = reverse_lazy('ordersapp:list')
-    title = 'GeekShop | Создание заказа'
+    title = 'geekshop | Создание заказа'
 
     def get_context_data(self, **kwargs):
         context = super(OrderCreate, self).get_context_data(**kwargs)
@@ -72,7 +72,7 @@ class OrderUpdate(UpdateView, BaseClassContextMixin, UserDipatchMixin):
     model = Order
     fields = []
     success_url = reverse_lazy('ordersapp:list')
-    title = 'GeekShop | Обновление заказа'
+    title = 'geekshop | Обновление заказа'
 
     def get_context_data(self, **kwargs):
         context = super(OrderUpdate, self).get_context_data(**kwargs)
@@ -106,12 +106,12 @@ class OrderUpdate(UpdateView, BaseClassContextMixin, UserDipatchMixin):
 class OrderDelete(DeleteView, BaseClassContextMixin):
     model = Order
     success_url = reverse_lazy('orders:list')
-    title = 'GeekShop | Удаление заказа'
+    title = 'geekshop | Удаление заказа'
 
 
 class OrderDetail(DetailView, BaseClassContextMixin, UserDipatchMixin):
     model = Order
-    title = 'GeekShop | Чтение заказа'
+    title = 'geekshop | Чтение заказа'
 
 
 def order_forming_complete(request, pk):

@@ -14,13 +14,13 @@ from .models import ProductCategory, Product
 
 class IndexTemplateView(TemplateView, BaseClassContextMixin):
     template_name = 'mainapp/index.html'
-    title = 'GeekShop'
+    title = 'geekshop'
 
 
 class CatalogListView(ListView, BaseClassContextMixin):
     model = Product
     template_name = 'mainapp/products.html'
-    title = 'GeekShop | Каталог'
+    title = 'geekshop | Каталог'
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(CatalogListView, self).get_context_data(**kwargs)

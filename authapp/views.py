@@ -19,7 +19,7 @@ class UserLoginView(LoginView, BaseClassContextMixin):
     model = User
     template_name = 'authapp/login.html'
     form_class = UserLoginForm
-    title = 'GeekShop | Авторизация'
+    title = 'geekshop | Авторизация'
     success_url = reverse_lazy('mainapp:products')
 
     # def get(self, request, *args, **kwargs):
@@ -33,7 +33,7 @@ class UserShopCreateView(CreateView, BaseClassContextMixin):
     template_name = 'authapp/registration.html'
     form_class = UserRegistrationForm
     success_url = reverse_lazy('authapp:login')
-    title = 'GeekShop | Создать пользователя'
+    title = 'geekshop | Создать пользователя'
 
     def post(self, request, *args, **kwargs):
 
@@ -77,7 +77,7 @@ class UserShopUpdateView(UpdateView, BaseClassContextMixin, UserDipatchMixin):
     template_name = 'authapp/profile.html'
     form_class = UserProfileForm
     success_url = reverse_lazy('authapp:profile')
-    title = 'GeekShop - Профиль'
+    title = 'geekshop - Профиль'
 
     def post(self, request, *args, **kwargs):
         form = UserProfileForm(data=request.POST, files=request.FILES, instance=request.user)
@@ -102,4 +102,4 @@ class UserShopUpdateView(UpdateView, BaseClassContextMixin, UserDipatchMixin):
 
 class UserLogoutView(LogoutView, BaseClassContextMixin):
     template_name = 'mainapp/index.html'
-    title = 'GeekShop | Выход'
+    title = 'geekshop | Выход'

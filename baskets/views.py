@@ -14,7 +14,7 @@ from mainapp.models import Product
 class BasketAddCreateView(UpdateView, UserDipatchMixin, BaseClassContextMixin):
     model = Basket
     template_name = 'mainapp/products.html'
-    title = 'GeekShop | Добавление товара в корзину!'
+    title = 'geekshop | Добавление товара в корзину!'
 
     def post(self, request, *args, **kwargs):
         if request.is_ajax:
