@@ -2,32 +2,28 @@
 {% load static %}
 
 {% block css %}
+    <!-- Bootstrap core CSS -->
     <link href="{% static 'css/products.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
-    <!-- Page Content -->
+    <!-- /.container -->
     <div class="container">
-
         <div class="row">
-
             <div class="col-lg-3">
-
                 <h1 class="my-4">GeekShop</h1>
                 <div class="list-group">
                     {% for category in categories %}
-                        <a href="{% url 'mainapp:category' category.id %}"
-                           class="list-group-item">{{ category.name }}</a>
+                        {% if category.is_active %}
+                            <a href="{% url 'mainapp:category' category.id %}" class="list-group-item">
+                                {{ category.name }}</a>
+                        {% endif %}
                     {% endfor %}
-                    <a href="{% url 'mainapp:products' %}" class="list-group-item">Все категории</a>
-
+                    <a class="list-group-item" href="{% url 'mainapp:products' %}">Все категории</a>
                 </div>
-
             </div>
             <!-- /.col-lg-3 -->
-
             <div class="col-lg-9">
-
                 <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
                     <ol class="carousel-indicators">
                         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -63,26 +59,32 @@
                 <nav aria-label="Page navigation example">
                     <ul class="pagination justify-content-center">
                         <li class="page-item {% if not products.has_previous %} disabled {% endif %}">
-                            <a class="page-link"
-                               href="{% if products.has_previous %} {% url 'mainapp:page' products.previous_page_number %} {% endif %}"
-                               tabindex="-1" aria-disabled="true">Previous</a>
-                        </li>
-                        {% for page in products.paginator.page_range %}
-                            <li class="page-item">
-                            <a class="page-link" href="{% url 'mainapp:page' page %}">{{ page }}</a>
-                        </li>
-                        {% endfor %}
-                        <li class="page-item {% if not products.has_next %} disabled {% endif %}"><a class="page-link"
-                            href="{% if products.has_next %} {% url 'mainapp:page' products.next_page_number %} {% endif %}">Next</a>
+                            <a class="page-link" href="{% if products.has_previous %}
+                                ?page={{ products.previous_page_number}} {% endif %}"
+                               tabindex="-1" aria-disabled="true">Предыдущая</a>
                         </li>
 
+                        {% for page in products.paginator.page_range %}
+                            {% if products.number == page %}
+                            <li class="page-item active">
+                                <a class="page-link" href="?page={{ page }}">{{ page }}
+                                    <span class="sr-only">(current)</span></a>
+                            </li>
+                            {% elif page > products.number|add:-3 and page < products.number|add:3 %}
+                                <li class="page-item">
+                                <a class="page-link" href="?page={{ page }}">{{ page }}</a>
+                            </li>
+                            {% endif %}
+                        {% endfor %}
+
+                        <li class="page-item {% if not products.has_next %} disabled {% endif %}">
+                            <a class="page-link" href="{% if products.has_next %}
+                                ?page={{ products.next_page_number }} {% endif %}">Следущая</a>
+                        </li>
                     </ul>
                 </nav>
-
             </div>
-
         </div>
-
     </div>
 {% endblock %}
 
@@ -90,7 +92,7 @@
     <!-- Footer -->
     <footer class="py-5 bg-dark">
         <div class="container">
-            <p class="m-0 text-center text-white">Copyright &copy; GeekShop 2020</p>
+            <p class="m-0 text-center text-white">Copyright &copy; GeekShop 2021</p>
         </div>
     </footer>
 {% endblock %}

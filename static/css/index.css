@@ -1,10 +1,11 @@
 body {
-    background: url("../vendor/img/wallpaper.jpg") no-repeat center top fixed;
+    background: url("../vendor/img/wallpaper.jpg") no-repeat 0px 55px fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
     -o-background-size: cover;
     padding-top: 56px;
+
 }
 
 #start-purchase-btn {

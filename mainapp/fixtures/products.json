@@ -1,0 +1,470 @@
+[
+  {
+    "model": "mainapp.product",
+    "pk": 1,
+    "fields": {
+      "name": "Худи черного цвета с монограммами adidas Originals",
+      "image": "product_image/Adidas-hoodie.png",
+      "description": "Мягкая ткань для свитшотов. Стиль и комфорт – это образ жизни.",
+      "price": "6090.00",
+      "quantity": 25,
+      "category": 1,
+      "is_active": true
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 2,
+    "fields": {
+      "name": "Синяя куртка The North Face",
+      "image": "product_image/Blue-jacket-The-North-Face.png",
+      "description": "Гладкая ткань. Водонепроницаемое покрытие. Легкий и теплый пуховый наполнитель.",
+      "price": "23725.00",
+      "quantity": 15,
+      "category": 4,
+      "is_active": true
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 3,
+    "fields": {
+      "name": "Коричневый спортивный oversized-топ ASOS DESIGN",
+      "image": "product_image/Brown-sports-oversized-top-ASOS-DESIGN.png",
+      "description": "Материал с плюшевой текстурой. Удобный и мягкий.",
+      "price": "3390.00",
+      "quantity": 10,
+      "category": 1,
+      "is_active": true
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 4,
+    "fields": {
+      "name": "Черный рюкзак Nike Heritage",
+      "image": "product_image/Black-Nike-Heritage-backpack.png",
+      "description": "Плотная ткань. Легкий материал.",
+      "price": "2340.00",
+      "quantity": 18,
+      "category": 2,
+      "is_active": true
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 5,
+    "fields": {
+      "name": "Черные туфли на платформе с 3 парами люверсов Dr Martens 1461 Be",
+      "image": "product_image/Black-Dr-Martens-shoes.png",
+      "description": "Гладкий кожаный верх. Натуральный материал.",
+      "price": "13590.00",
+      "quantity": 5,
+      "category": 3,
+      "is_active": true
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 6,
+    "fields": {
+      "name": "Темно-синие широкие строгие брюки ASOS DESIGN",
+      "image": "product_image/Dark-blue-wide-leg-ASOs-DESIGN-trousers.png",
+      "description": "Легкая эластичная ткань сирсакер Фактурная ткань.",
+      "price": "2890.00",
+      "quantity": 16,
+      "category": 1,
+      "is_active": true
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 7,
+    "fields": {
+      "name": "Дубленка из белого меха",
+      "image": "product_image/white_fur_coat.jpg",
+      "description": "Дубленка из искусственного меха и эко замши в кремовом цвете. Oversize крой, отложной воротник, спущенная линия плеча, боковые карманы.",
+      "price": "8999.00",
+      "quantity": 17,
+      "category": 1,
+      "is_active": true
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 8,
+    "fields": {
+      "name": "Атласное платье Миди с вырезом",
+      "image": "product_image/satin_dress_blue.jpg",
+      "description": "Длинное платье с фигурными вырезами вокруг талии. Круглый вырез, широкие расклешенные рукава.",
+      "price": "5999.00",
+      "quantity": 12,
+      "category": 1,
+      "is_active": true
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 9,
+    "fields": {
+      "name": "Блузка с кроем на одно плечо",
+      "image": "product_image/white_blouse.jpg",
+      "description": "Блузка свободного кроя в молочном цвете. Блузку можно приспустить на одно плечо.",
+      "price": "1499.00",
+      "quantity": 20,
+      "category": 1,
+      "is_active": true
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 10,
+    "fields": {
+      "name": "Рюкзак Addidas",
+      "image": "product_image/Ryukzak_addias.jpg",
+      "description": "Мягкие лямки не впиваются в плечи, поэтому ты всегда будешь чувствовать себя комфортно. Даже если твой рюкзак действительно заполнен под завязку.",
+      "price": "2699.00",
+      "quantity": 14,
+      "category": 2,
+      "is_active": true
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 11,
+    "fields": {
+      "name": "Приталенное пальто миди",
+      "image": "product_image/pritalenoe_palto_midi.jpeg",
+      "description": "Полушерстяное пальто пудрово-бежевого оттенка.",
+      "price": "14990.00",
+      "quantity": 12,
+      "category": 1,
+      "is_active": true
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 12,
+    "fields": {
+      "name": "Голубой вязанный джемпер",
+      "image": "product_image/blue_vazanii_sfiter.jpeg",
+      "description": "Длинный вязаный джемпер из мягкой пряжи на основе модала василькового оттенка.",
+      "price": "4490.00",
+      "quantity": 18,
+      "category": 1,
+      "is_active": true
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 13,
+    "fields": {
+      "name": "Водолазка с короткими рукавами",
+      "image": "product_image/vodolazka_s_korotkimi_rukavami.jpeg",
+      "description": "Лёгкая водолазка из трикотажа цвета жасмина с фактурой «лапша».",
+      "price": "2490.00",
+      "quantity": 25,
+      "category": 1,
+      "is_active": true
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 14,
+    "fields": {
+      "name": "Пальто из драпа",
+      "image": "product_image/palto_drap.jpeg",
+      "description": "Классическое пальто сшито из смесовой ткани с шерстью темно-синего цвета.",
+      "price": "11999.00",
+      "quantity": 9,
+      "category": 1,
+      "is_active": true
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 15,
+    "fields": {
+      "name": "Серый однобортный пиджак",
+      "image": "product_image/grey_pidjak.jpeg",
+      "description": "Облегченный пиджак в цвете серый меланж.",
+      "price": "11990.00",
+      "quantity": 0,
+      "category": 1,
+      "is_active": true
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 16,
+    "fields": {
+      "name": "Топ Jassi",
+      "image": "product_image/top_jassi.webp",
+      "description": "Красивый и элегантный топ.",
+      "price": "490.00",
+      "quantity": 35,
+      "category": 1,
+      "is_active": true
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 17,
+    "fields": {
+      "name": "Тёмная хлопковая рубашка",
+      "image": "product_image/dark_hlopok_rubashka.jpeg",
+      "description": "Полуприталенная рубашка из плотного хлопкового сатина чёрного цвета с мелким геометрическим узором контрастного цвета.",
+      "price": "1999.00",
+      "quantity": 14,
+      "category": 1,
+      "is_active": true
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 18,
+    "fields": {
+      "name": "Женское пальто-халат",
+      "image": "product_image/palto-halat.jpg",
+      "description": "Пальто облегченное из вареной шерсти голубого цвета, удлиненное с поясом, накладные карманы.",
+      "price": "7200.00",
+      "quantity": 11,
+      "category": 1,
+      "is_active": true
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 19,
+    "fields": {
+      "name": "Костюм Eazyway с начесом",
+      "image": "product_image/suit_Eazyway.jpg",
+      "description": "Худи с капюшоном: прямой силуэт, средний объем, длина до линии.",
+      "price": "5500.00",
+      "quantity": 25,
+      "category": 1,
+      "is_active": true
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 20,
+    "fields": {
+      "name": "Костюм для фитнеса",
+      "image": "product_image/suit_for_fitness.jpg",
+      "description": "Спортивный костюм для йоги и фитнеса включает в себя: тайтсы, топ и рашгард.",
+      "price": "3100.00",
+      "quantity": 17,
+      "category": 1,
+      "is_active": true
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 21,
+    "fields": {
+      "name": "Платье Baon",
+      "image": "product_image/dress_baon.jpg",
+      "description": "Элегантное и красивое платье для выхода в свет.",
+      "price": "3490.00",
+      "quantity": 10,
+      "category": 1,
+      "is_active": true
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 22,
+    "fields": {
+      "name": "Толстовка PUMA Velour Women's",
+      "image": "product_image/tolstovka_puma_celour.jpg",
+      "description": "Свободная посадка и роскошная мягкость бархата в этой толстовке создают стильную атмосферу.",
+      "price": "5990.00",
+      "quantity": 16,
+      "category": 1,
+      "is_active": true
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 23,
+    "fields": {
+      "name": "Куртка Puma Warmcell Lightweight",
+      "image": "product_image/kurtka_puma.jpg",
+      "description": "Легкая, утепленная, женственная, стеганая куртка warmCELL Lightweight – то, что нужно для спортивного стиля.",
+      "price": "7990.00",
+      "quantity": 21,
+      "category": 1,
+      "is_active": true
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 24,
+    "fields": {
+      "name": "Кеды Suede Mayu Mono",
+      "image": "product_image/keds_puma.jpg",
+      "description": "Кеды Suede Mayu Mono – это яркая, игривая итерация классической модели Suede, воплощенная в уникальных преувеличенных пропорциях.",
+      "price": "9490.00",
+      "quantity": 15,
+      "category": 3,
+      "is_active": true
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 25,
+    "fields": {
+      "name": "Шлепанцы Puma Fluff Remix",
+      "image": "product_image/shlepans_puma.jpg",
+      "description": "Вы везде почувствуете себя как дома. Пушистые шлепанцы Fluff Remix оснащены ремешком и стелькой из искусственного меха.",
+      "price": "3490.00",
+      "quantity": 25,
+      "category": 3,
+      "is_active": true
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 26,
+    "fields": {
+      "name": "Кроссовки Puma RS-2K",
+      "image": "product_image/krosovki_puma.jpg",
+      "description": "Кроссовки RS-2K – будущее повседневного стиля, вдохновленного спортом.",
+      "price": "9990.00",
+      "quantity": 14,
+      "category": 3,
+      "is_active": true
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 27,
+    "fields": {
+      "name": "Кроссовки Addidas Forum Low",
+      "image": "product_image/addidas_forum_low.jpg",
+      "description": "Эти кроссовки adidas Forum похожи в чем-то на межсезонье.",
+      "price": "6399.00",
+      "quantity": 15,
+      "category": 3,
+      "is_active": true
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 28,
+    "fields": {
+      "name": "Ботинки Addidas Blizzare",
+      "image": "product_image/addidas_blizzare.jpg",
+      "description": "Не ищи компромиссы. Тепло, сухость и уверенность в холодную погоду.",
+      "price": "5399.00",
+      "quantity": 20,
+      "category": 3,
+      "is_active": true
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 29,
+    "fields": {
+      "name": "Кроссовки Addidas Superstar",
+      "image": "product_image/addidas_superstar.jpg",
+      "description": "С баскетбольных площадок 70-х в хип-хоп культуру 80-х и гардеробы по всему миру.",
+      "price": "9399.00",
+      "quantity": 25,
+      "category": 3,
+      "is_active": true
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 30,
+    "fields": {
+      "name": "Шапка Запорожец Dobro",
+      "image": "product_image/shapka_zaporojec.jpg",
+      "description": "Стильная шапка на холодное время года.",
+      "price": "1490.00",
+      "quantity": 30,
+      "category": 2,
+      "is_active": true
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 31,
+    "fields": {
+      "name": "БЕЙСБОЛКА Truespin Бирюзовая",
+      "image": "product_image/beysbolka-truespin.jpg",
+      "description": "Молодежная и очень привлекательная бейсболка для молодежи.",
+      "price": "623.00",
+      "quantity": 14,
+      "category": 2,
+      "is_active": true
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 32,
+    "fields": {
+      "name": "Ремень из зернистой кожи Boss",
+      "image": "product_image/remen_boss.jpg",
+      "description": "Универсальный ремень от HUGO из мягкой кожи с тиснением натуральной зернистой текстуры/",
+      "price": "5100.00",
+      "quantity": 10,
+      "category": 2,
+      "is_active": true
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 33,
+    "fields": {
+      "name": "Замшевый ремень Boss",
+      "image": "product_image/remen_grey.jpg",
+      "description": "Ремень из мягкой замши, создающей изысканный вид, отличается кипером с логотипом BOSS для оригинальности.",
+      "price": "7400.00",
+      "quantity": 10,
+      "category": 2,
+      "is_active": true
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 34,
+    "fields": {
+      "name": "Подарочный сертификат на 3000 руб.",
+      "image": "product_image/podarok.jpg",
+      "description": "Порадуй своих люимых и приобрети им подарочный сертификат.",
+      "price": "1000.00",
+      "quantity": 50,
+      "category": 5,
+      "is_active": true
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 35,
+    "fields": {
+      "name": "Подарочный сертификат на 5000 руб.",
+      "image": "product_image/podarok_y47kLaM.jpg",
+      "description": "Порадуй своих любимых и приобрети им подарочный сертификат.",
+      "price": "5000.00",
+      "quantity": 50,
+      "category": 5,
+      "is_active": true
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 36,
+    "fields": {
+      "name": "Подарочный сертификат на 10000 руб.",
+      "image": "product_image/podarok_i8JzbcD.jpg",
+      "description": "Порадуй своих любимых и приобрети им подарочный сертификат.",
+      "price": "10000.00",
+      "quantity": 50,
+      "category": 5,
+      "is_active": true
+    }
+  }
+]

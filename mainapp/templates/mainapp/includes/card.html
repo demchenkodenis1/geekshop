@@ -1,28 +1,44 @@
 <div class="card_add_basket">
-    <div class="row">
-        {% for product in products %}
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="card h-100">
-                    <a href="#">
-                        <img class="card-img-top"
-                             src="{{ product.image.url }}"
-                             alt="">
-                    </a>
-                    <div class="card-body">
-                        <h4 class="card-title">
-                            <a href="{% url 'mainapp:detail' product.id %}">{{ product.name }}</a>
-                        </h4>
-                        <h5>{{ product.price }} руб.</h5>
-                        <p class="card-text">{{ product.description }}</p>
-                    </div>
-                    <div class="card-footer text-center">
-                        <button type="button" class="btn btn-outline-success" value="{{ product.id }}">Отправить в
-                            корзину</button>
-{#                        <a href="{% url 'baskets:basket_add' product.id %}" class="btn btn-outline-success">Отправить в#}
-{#                            корзину</a>#}
+    {% if messages %}
+        <div class="alert alert-success" role="alert" style="margin-top: 50px;">
+                {% for mes in messages %}
+                    {{ mes }}
+                {% endfor %}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% endif %}
+    <form id="form_add_basket" action="#" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row">
+            {% for product in products %}
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card h-100">
+                        <a href="#">
+                            <img class="card-img-top"
+                                 src="{{ product.image.url }}" alt="">
+                        </a>
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                <a href="{% url 'mainapp:detail' product.id %}">{{ product.name }}</a>
+                            </h4>
+                            <h5>{{ product.price }} руб.</h5>
+                            <p class="card-text">{{ product.description }}</p>
+                        </div>
+                        <div class="card-footer text-center">
+                            <label>
+                                <div class="button_basket">
+                                    <button id="button_basket" class="btn btn-outline-success"
+                                            type="submit" formaction="{% url 'baskets:basket_add' product.id %}">
+                                        Отправить в корзину
+                                    </button>
+                                </div>
+                            </label>
+                        </div>
                     </div>
                 </div>
-            </div>
-        {% endfor %}
-    </div>
+            {% endfor %}
+        </div>
+    </form>
 </div>
