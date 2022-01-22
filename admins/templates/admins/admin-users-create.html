@@ -1,17 +1,21 @@
 {% extends 'admins/base.html' %}
-
+{% load static %}
 {% block content %}
     <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid">
                 <h1 class="mt-4">Создание пользователя</h1>
+                <div class="col-lg-12 text-center">
+                    <img width="200" height="200" class="img-thumbnail" alt="Аватар профиля"
+                         src="{% static 'vendor/img/users/default_avatar.jpg' %}">
+                </div>
                 <form action="{% url 'admins:admin_users_create' %}" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="form-row">
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <label class="small mb-1" for=" {{ form.first_name.id_for_label }}">Имя</label>
-                               {{ form.first_name }}
+                                <label class="small mb-1" for="{{ form.first_name.id_for_label }}">Имя</label>
+                                {{ form.first_name }}
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -24,15 +28,16 @@
                     <div class="form-row mb-2">
                         <div class="col-lg-12">
                             <div class="custom-file">
-                                  {{ form.image }}
-                                <label class="custom-file-label" for="{{ form.image.id_for_label }}">Выберите изображение</label>
+                                {{ form.image }}
+                                <label class="custom-file-label" for="{{ form.image.id_for_label }}"
+                                >Выберите свой аватар</label>
                             </div>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col-lg-5">
                             <label class="small mb-1" for="{{ form.username.id_for_label }}">Имя пользователя</label>
-                           {{ form.username }}
+                            {{ form.username }}
                         </div>
                         <div class="col-lg-5">
                             <label class="small mb-1" for="{{ form.email.id_for_label }}">Адрес электронной
@@ -40,7 +45,7 @@
                             {{ form.email }}
                         </div>
                         <div class="col-lg-2">
-                            <label class="small mb-1" for="{{ form.age.id_for_label }}">Возраст</label>
+                            <label class="small mb-1" for="{{ form.age.id_for_label }}">Введите ваш возраст</label>
                             {{ form.age }}
                         </div>
                     </div>

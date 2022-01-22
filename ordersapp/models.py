@@ -1,7 +1,10 @@
-from django.conf import settings
+# -*- coding: utf-8 -*-
 from django.db import models
 
 # Create your models here.
+from django.db.migrations import Migration
+
+from authapp.models import User
 from mainapp.models import Product
 
 
@@ -14,30 +17,30 @@ class Order(models.Model):
     CANCEL = 'CNC'
 
     ORDER_STATUS_CHOICES = (
-        (FORMING, 'формируется'),
-        (SEND_TO_PROCEED, 'отправлен в обработку'),
-        (PAID, 'оплачено'),
-        (PROCEEDED, 'обрабатывается'),
-        (READY, 'готов к выдачи'),
-        (CANCEL, 'отмена заказа'),
+        (FORMING, 'Формируется'),
+        (SEND_TO_PROCEED, 'Отправлен в обработку'),
+        (PAID, 'Оплачено'),
+        (PROCEEDED, 'В обработке'),
+        (READY, 'Готов к выдаче'),
+        (CANCEL, 'Отмена заказа')
     )
 
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    created = models.DateTimeField(verbose_name='создан', auto_now_add=True)
-    updated = models.DateTimeField(verbose_name='обновлен', auto_now=True)
-    status = models.CharField(choices=ORDER_STATUS_CHOICES, verbose_name='статус', max_length=3, default=FORMING)
-    is_active = models.BooleanField(verbose_name='активный',default=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    created = models.DateTimeField(verbose_name='Создан', auto_now_add=True)
+    updated = models.DateTimeField(verbose_name='Обновлен', auto_now=True)
+    status = models.CharField(choices=ORDER_STATUS_CHOICES, verbose_name='Статус', max_length=3, default=FORMING)
+    is_active = models.BooleanField(verbose_name='Активный', db_index=True, default=True)
+
+    class Meta:
+        ordering = ('-created',)
+        verbose_name = 'Заказ'
+        verbose_name_plural = 'Заказы'
 
     def __str__(self):
         return f'Текущий заказ {self.pk}'
 
-    def get_total_quantity(self):
-        items = self.orderitems.select_related()
-        return sum(list(map(lambda x: x.quantity,items)))
-
-    def get_total_cost(self):
-        items = self.orderitems.select_related()
-        return sum(list(map(lambda x: x.get_product_cost(),items)))
+    def get_total_values(self):
+        return self.orderitems.select_related()
 
     def get_items(self):
         pass
@@ -49,15 +52,18 @@ class Order(models.Model):
         self.is_active = False
         self.save()
 
+    def get_summary(self):
+        items = self.orderitems.select_related()
+        return {
+            'get_total_cost': sum(list(map(lambda x: x.get_product_cost(), items))),
+            'get_total_quantity': sum(list(map(lambda x: x.quantity, items)))
+        }
+
 
 class OrderItem(models.Model):
-    order = models.ForeignKey(Order,verbose_name='заказ',related_name='orderitems',on_delete=models.CASCADE)
-    product = models.ForeignKey(Product,verbose_name='продукты',on_delete=models.CASCADE)
-    quantity = models.PositiveIntegerField(verbose_name='количество',default=0)
+    order = models.ForeignKey(Order, verbose_name='Заказ', related_name='orderitems', on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, verbose_name='Продукты', on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(verbose_name='Количество', default=0)
 
     def get_product_cost(self):
         return self.product.price * self.quantity
-
-    @staticmethod
-    def get_item(pk):
-        return OrderItem.objects.get(pk=pk).quantity
