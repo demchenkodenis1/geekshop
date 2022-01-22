@@ -26,24 +26,21 @@
 
                                 <tbody>
                                 {% for user in object_list %}
-                                    <tr>
+                                    <tr {% if user.is_active == False %} style="background: #f59898" {% endif %}>
                                         <td><a href="{% url 'admins:admin_users_update' user.id %}"
-                                               style="color: dodgerblue">{{ user.username }}</a></td>
-                                        <td>{{ user.first_name }}</td>
+                                               style="color: dodgerblue">
+                                            {{ user.username|title}}</a></td>
+                                        <td>{{ user.first_name|title}}</td>
                                         <td>{{ user.last_name }}</td>
-                                        <td>{{ user.email }}</td>
+                                        <td>{{ user.email }}.ru</td>
                                         <td class="text-center">
                                             {% if user.is_staff %}
                                                 <i class="fas fa-check-circle"></i>
                                             {% else %}
                                                 <i class="fas fa-times-circle"></i>
                                             {% endif %}
-
                                         </td>
-
-
                                         <td class="text-center">
-
                                             {% if user.is_active %}
                                                 <i class="fas fa-check-circle"></i>
                                             {% else %}

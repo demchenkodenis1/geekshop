@@ -9,16 +9,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="csrf_token" content="{{ csrf_token }}">
 
     <title>{{ title }}</title>
-    <meta name="csrf-token" content="{{ csrf_token }}">
+
 
     <!-- Bootstrap core CSS -->
-    <link href="{% static  'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+
 
     {% block css %}
 
     {% endblock %}
+
 </head>
 
 <body>
@@ -26,7 +30,7 @@
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="{% url 'index' %}">GeekShop {% now "D d M Y" %} </a>
+        <a class="navbar-brand" href="{% url 'index' %}">GeekShop {% now "H:i d M Y " %}</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -43,7 +47,6 @@
                                 class="fas fa-sign-in-alt"></i></a>
                     </li>
                 {% else %}
-
                     <li class="nav-item">
                         <div class="dropdown">
                             <a class="nav-link dropdown-toggle" href="" data-toggle="dropdown">
@@ -52,7 +55,7 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a class="nav-link text-dark" href="{% url 'authapp:profile' %}">
+                                    <a class="nav-link text-dark" href="{% url 'authapp:profile' %} ">
                                         Профиль
                                     </a>
                                 </li>
@@ -63,7 +66,6 @@
                                 </li>
                             </ul>
                         </div>
-
 
                         {% if user.is_superuser %}
                             <li class="nav-item">
@@ -88,17 +90,17 @@
 {% block footer %}
 
 {% endblock %}
+
 <!-- Bootstrap core JavaScript -->
-<script src="{% static  'vendor/jquery/jquery.min.js' %}"></script>
-<script src="{% static  'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-
-<script src="{% static  'js/basket.js' %}"></script>
-<script src="{% static  'js/jquery.formset.js' %}"></script>
-<script src="{% static  'js/orders_scripts.js' %}"></script>
-
+<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+{#<script src="{% static '/js/basket.js' %}"></script>#}
+<script src="{% static 'js/jquery.formset.js' %}"></script>
+<script src="{% static 'js/orders_scripts.js' %}"></script>
+{#<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.8/sweetalert2.min.js"></script>#}
 
 <!-- FontAwesome script -->
-<script src="{% static  'vendor/fontawesome/fontawesome-icons.js' %}" crossorigin="anonymous"></script>
+<script src="{% static 'vendor/fontawesome/fontawesome-icons.js' %}" crossorigin="anonymous"></script>
 
 </body>
 

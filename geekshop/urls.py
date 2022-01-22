@@ -1,4 +1,4 @@
-"""geekshop URL Configuration
+"""GeekShop URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.2/topics/http/urls/
@@ -22,28 +22,22 @@ from django.views.i18n import set_language
 
 import debug_toolbar
 
-from mainapp.views import index, products
+from mainapp.views import IndexTemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', index, name='index'),
+    path('', IndexTemplateView.as_view(), name='index'),
     path('products/', include('mainapp.urls', namespace='mainapp')),
     path('users/', include('authapp.urls', namespace='authapp')),
     path('baskets/', include('baskets.urls', namespace='baskets')),
     path('admins/', include('admins.urls', namespace='admins')),
     path('orders/', include('ordersapp.urls', namespace='orders')),
 
-    # path('language_new/', include('django.conf.urls',namespace='language_new')),
-    # path('lang/', set_language, name='language'),
-    # path(r'^i18n/', include('django.conf.urls.i18n')),
-    path('i18n/', include('django.conf.urls.i18n')),
-
-    path('', include('social_django.urls',namespace='social')),
-
-
-
-
+    url(r'^i18n/', include('django.conf.urls.i18n')),
+    path('', include('social_django.urls', namespace='social')),
 ]
+
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     urlpatterns += [path('debug/', include(debug_toolbar.urls))]
+

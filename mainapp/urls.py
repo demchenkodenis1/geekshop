@@ -1,12 +1,13 @@
-
 from django.urls import path
-from mainapp.views import products, ProductDetail
+from django.views.decorators.cache import cache_page
+
+from mainapp.views import CatalogListView, ProductDetail
 
 app_name = 'mainapp'
 urlpatterns = [
-
-    path('', products,name='products'),
-    path('category/<int:id_category>', products, name='category'),
-    path('page/<int:page>', products, name='page'),
+    path('', CatalogListView.as_view(), name='products'),
+    path('category/<int:id_category>', CatalogListView.as_view(), name='category'),
+    path('page/<int:page>', CatalogListView.as_view(), name='page'),
     path('detail/<int:pk>/', ProductDetail.as_view(), name='detail'),
 ]
+

@@ -9,23 +9,23 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-3">
-                <h1 class="my-4">GeekShop</h1>
+                <h1 class="my-4">{{ title }}</h1>
                 <div class="list-group">
-                    <a href="{% url 'mainapp:products' %}" class="list-group-item">Все</a>
+                    <a href="{% url 'mainapp:products' %}" class="list-group-item">Вернутся в каталог</a>
                 </div>
             </div>
 
             <div class="col-lg-9">
                 <div class="row my-5">
                     <div class="card" style="width: 20rem;">
-                        <img src="/media/{{ product.image }}" class="card-img-top" alt="...">
+                        <img src="{{ product.image.url}}" class="card-img-top" alt="...">
                         <div class="card-body">
-                            <h5 class="card-title">{{ product.name }}</h5>
-                            <p class="card-text">{{ product.description }}</p>
+                            <h5 class="card-title"> {{ product.name }}</h5>
+                            <p class="card-text">Описание товара: <br>{{ product.description }}</p>
                         </div>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">{{ product.price }} руб</li>
-                            <li class="list-group-item">В наличии: {{ product.quantity }}</li>
+                            <li class="list-group-item">Цена товара: {{ product.price }} руб.</li>
+                            <li class="list-group-item">В наличии: {{ product.quantity }} шт.</li>
                         </ul>
                     </div>
                 </div>

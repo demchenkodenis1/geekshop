@@ -1,119 +1,169 @@
-from django.contrib.auth.decorators import user_passes_test
+from collections import OrderedDict
+
+from django.contrib import messages
+from django.db.models import F
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.contrib.messages.views import SuccessMessageMixin
 
 # Create your views here.
 from django.urls import reverse, reverse_lazy
-from django.utils.decorators import method_decorator
-from django.views.generic import ListView, UpdateView, DeleteView, CreateView, DetailView, TemplateView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, TemplateView
 
-from admins.forms import UserAdminRegisterForm, UserAdminProfileForm, CategoryUpdateFormAdmin, ProductsForm
+from admins.forms import UserAdminRegistrationForm, UserAdminProfileForm, ProductAdminRegistrationForm, \
+    ProductAdminProfileForm, CategoryUpdateFormAdmin
 from authapp.models import User
-from mainapp.mixin import BaseClassContextMixin, CustomDispatchMixin
+from mainapp.mixin import CustomDispatchMixin, BaseClassContextMixin
 from mainapp.models import Product, ProductCategory
+from ordersapp.models import Order
 
 
-class IndexTemplateView(TemplateView):
+class UserTemplateView(TemplateView, CustomDispatchMixin):
+    model = User
     template_name = 'admins/admin.html'
 
-#Users
-class UserListView(ListView,BaseClassContextMixin,CustomDispatchMixin):
+
+class UserListView(ListView, CustomDispatchMixin, BaseClassContextMixin):
     model = User
     template_name = 'admins/admin-users-read.html'
-    title = 'Админка | Пользователи'
+    title = 'Админ | Пользователи'
 
-class UserCreateView(CreateView,BaseClassContextMixin,CustomDispatchMixin):
+
+class UserCreateView(CreateView, CustomDispatchMixin, BaseClassContextMixin):
     model = User
     template_name = 'admins/admin-users-create.html'
-    form_class = UserAdminRegisterForm
+    form_class = UserAdminRegistrationForm
     success_url = reverse_lazy('admins:admin_users')
-    title = 'Админка | Создать пользователя'
+    title = 'Админ | Создать пользователя'
 
-class UserUpdateView(UpdateView,BaseClassContextMixin,CustomDispatchMixin):
+
+class UserUpdateView(UpdateView, CustomDispatchMixin, BaseClassContextMixin):
     model = User
     template_name = 'admins/admin-users-update-delete.html'
     form_class = UserAdminProfileForm
     success_url = reverse_lazy('admins:admin_users')
-    title = 'Админка | Обновить пользователя'
+    title = 'Админ | Редактирование пользователя'
 
-class UserDeleteView(DeleteView,BaseClassContextMixin,CustomDispatchMixin):
+
+class UserDeleteView(DeleteView, CustomDispatchMixin, BaseClassContextMixin):
     model = User
     template_name = 'admins/admin-users-update-delete.html'
-    form_class = UserAdminProfileForm
     success_url = reverse_lazy('admins:admin_users')
-    title = 'Админка | Удалить пользователя'
+    title = 'Админ | Удаление пользователя'
 
     def delete(self, request, *args, **kwargs):
-        self.object =self.get_object()
-        self.object.is_active = False
-        self.object.save()
-        return HttpResponseRedirect(self.get_success_url())
-
-# Category
-class CategoryListView(ListView,BaseClassContextMixin,CustomDispatchMixin):
-    model = ProductCategory
-    template_name = 'admins/admin-category-read.html'
-    title = 'Админка | Список категорий'
-
-
-    def get_queryset(self):
-        if self.kwargs:
-           return ProductCategory.objects.filter(id=self.kwargs.get('pk'))
+        self.object = self.get_object()
+        if self.object.is_active:
+            self.object.is_active = False
         else:
-           return ProductCategory.objects.all()
-
-class CategoryDeleteView(DeleteView,BaseClassContextMixin,CustomDispatchMixin):
-    model = ProductCategory
-    template_name = 'admins/admin-category-update-delete.html'
-    success_url = reverse_lazy('admins:admin_category')
-
-    def delete(self, request, *args, **kwargs):
-        self.object = self.get_object()
-        self.object.is_active = False if self.object.is_active else True
+            self.object.is_active = True
         self.object.save()
         return HttpResponseRedirect(self.get_success_url())
 
-class CategoryUpdateView(UpdateView,BaseClassContextMixin,CustomDispatchMixin):
+
+class ProductsListView(ListView, CustomDispatchMixin, BaseClassContextMixin):
+    model = Product
+    template_name = 'admins/products/admin-products-read.html'
+    title = 'Админ | Продукты'
+
+
+class ProductCreateView(CreateView, CustomDispatchMixin, BaseClassContextMixin, SuccessMessageMixin):
+    model = Product
+    template_name = 'admins/products/admin-products-create.html'
+    form_class = ProductAdminRegistrationForm
+    success_url = reverse_lazy('admins:admin_products')
+    success_message = "%(name)s продукт успешно создан"
+    title = 'Админ | Создать продукт'
+
+    def form_valid(self, form):
+        messages.set_level(self.request, messages.SUCCESS)
+        messages.success(self.request, "Продукт успешно создан!")
+        super().form_valid(form)
+        return HttpResponseRedirect(self.get_success_url())
+
+
+class ProductUpdateView(UpdateView, CustomDispatchMixin, BaseClassContextMixin):
+    model = Product
+    template_name = 'admins/products/admin-products-update-delete.html'
+    form_class = ProductAdminProfileForm
+    success_url = reverse_lazy('admins:admin_products')
+    title = 'Админ | Редактирование товар'
+
+
+class ProductDeleteView(DeleteView, CustomDispatchMixin, BaseClassContextMixin):
+    model = Product
+    template_name = 'admins/products/admin-products-update-delete.html'
+    success_url = reverse_lazy('admins:admin_products')
+    title = 'Админ | Удаление товара'
+
+
+class CategoriesListView(ListView, CustomDispatchMixin, BaseClassContextMixin):
     model = ProductCategory
-    template_name = 'admins/admin-category-update-delete.html'
-    form_class = CategoryUpdateFormAdmin
-    title = 'Админка | Обновления категории'
-    success_url = reverse_lazy('admins:admin_category')
+    template_name = 'admins/categories/admin-categories-read.html'
+    title = 'Админ | Категории'
 
-class CategoryCreateView(CreateView,BaseClassContextMixin,CustomDispatchMixin):
+
+class CategoriesCreateView(CreateView, CustomDispatchMixin, BaseClassContextMixin):
     model = ProductCategory
-    template_name = 'admins/admin-category-create.html'
-    success_url = reverse_lazy('admins:admin_category')
+    template_name = 'admins/categories/admin-categories-create.html'
     form_class = CategoryUpdateFormAdmin
-    title = 'Админка | Создание категории'
+    success_url = reverse_lazy('admins:admin_categories')
+    title = 'Админ | Создать категорию'
 
-# Product
-class ProductListView(ListView,BaseClassContextMixin,CustomDispatchMixin):
-    model = Product
-    template_name = 'admins/admin-product-read.html'
-    title = 'Админка | Обновления категории'
+    def form_valid(self, form):
+        messages.set_level(self.request, messages.SUCCESS)
+        messages.success(self.request, "Категория успешна создана!")
+        super().form_valid(form)
+        return HttpResponseRedirect(self.get_success_url())
 
-class ProductsUpdateView(UpdateView, BaseClassContextMixin,CustomDispatchMixin):
-    model = Product
-    template_name = 'admins/admin-products-update-delete.html'
-    form_class = ProductsForm
-    title = 'Админка | Обновление продукта'
-    success_url = reverse_lazy('admins:admins_product')
 
-class ProductsCreateView(CreateView, BaseClassContextMixin,CustomDispatchMixin):
-    model = Product
-    template_name = 'admins/admin-products-create.html'
-    form_class = ProductsForm
-    title = 'Админка | Создание продукта'
-    success_url = reverse_lazy('admins:admins_product')
+class CategoriesUpdateView(UpdateView, CustomDispatchMixin, BaseClassContextMixin):
+    model = ProductCategory
+    template_name = 'admins/categories/admin-categories-update.html'
+    form_class = CategoryUpdateFormAdmin
+    success_url = reverse_lazy('admins:admin_categories')
+    title = 'Админ | Редактирование категории'
 
-class ProductsDeleteView(DeleteView, CustomDispatchMixin):
-    model = Product
-    template_name = 'admins/admin-product-read.html'
-    success_url = reverse_lazy('admins:admins_product')
+    def form_valid(self, form):
+        if 'discount' in form.cleaned_data:
+            discount = form.cleaned_data['discount']
+            if discount:
+                self.object.product_set.update(price=F('price') * (1 - discount / 100))
+        return HttpResponseRedirect(self.get_success_url())
+
+
+class CategoriesDeleteView(DeleteView, CustomDispatchMixin, BaseClassContextMixin):
+    model = ProductCategory
+    template_name = 'admins/categories/admin-categories-read.html'
+    success_url = reverse_lazy('admins:admin_categories')
+    title = 'Админ | Удаление категории'
 
     def delete(self, request, *args, **kwargs):
         self.object = self.get_object()
-        self.object.is_active = False if self.object.is_active else True
+        if self.object.is_active:
+            self.object.product_set.update(is_active=False)
+            self.object.is_active = False
+        else:
+            self.object.product_set.update(is_active=True)
+            self.object.is_active = True
         self.object.save()
         return HttpResponseRedirect(self.get_success_url())
+
+
+class OrdersListView(ListView, CustomDispatchMixin, BaseClassContextMixin):
+    model = Order
+    template_name = 'admins/orders/admin-orders-read.html'
+    title = 'Админ | Заказы'
+
+
+
+def order_change_status(request, pk):
+    statuses = ['FM', 'STP', 'PD', 'PRD', 'RDY', 'CNC']
+    element = Order.objects.get(id=pk)
+    element.status = statuses[(statuses.index(element.status) + 1) % len(statuses)]
+    element.save()
+
+    return HttpResponseRedirect(reverse('admins:admin_orders'))
+
+
+
+

@@ -1,4 +1,4 @@
-from  baskets.models import Basket
+from baskets.models import Basket
 
 def basket(request):
     baskets_list = []
@@ -6,5 +6,5 @@ def basket(request):
         baskets_list = Basket.objects.filter(user=request.user)
 
     return  {
-        'baskets':baskets_list
+        'baskets': baskets_list
     }
