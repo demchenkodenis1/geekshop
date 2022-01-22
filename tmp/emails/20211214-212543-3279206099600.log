@@ -1,0 +1,14 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: 
+ =?utf-8?b?0JTQu9GPINCw0LrRgtC40LLQsNGG0LjQuCDRg9GH0LXRgtC90L7QuSDQt9Cw0L8=?=
+ =?utf-8?b?0LjRgdC4IGtpZCDQv9GA0L7QudC00LjRgtC1INC/0L4g0YHRgdGL0LvQutC1Lg==?=
+From: django@mail.ru
+To: kid@mail.ru
+Date: Tue, 14 Dec 2021 16:25:43 -0000
+Message-ID: <163949914351.6320.12326916403368014881@Book-Samsung>
+
+Для потверждения учетной записи kid на портале: 
+http:localhost:8000/users/verify/kid@mail.ru/6cc676cb747431723593dd96ef8f014fa2fdae40/
+-------------------------------------------------------------------------------
